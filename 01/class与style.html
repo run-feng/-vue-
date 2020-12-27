@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html</title>
+    <script src="./vue.js"></script>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .a{
+
+        }
+        .b{}
+        .c{}
+    </style>
+</head>
+<body>
+    <div id="box">
+       <div :class="classobj">动态切换class-对象写法</div>
+       <div :class="classarr">动态切换class-数组写法</div>
+
+       <div style="background-color: yellow;">静态内联样式</div>
+       <div :style="styleobj">动态内联样式-对象写法</div>
+       <div :style="stylearr">动态内联样式-数组写法</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                classobj:{
+                    a:true,
+                    b:true,
+                    c:true
+                },
+                classarr:['a','b','c'],
+                styleobj:{
+                    backgroundColor:'red'
+                },
+                stylearr:[{
+                    backgroundColor:'blue'
+                }]
+            }
+        })
+        // Vue.set(vm.classobj,"d",true) 拦截
+    </script>
+</body>
+</html>

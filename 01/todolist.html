@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <!-- 监听事件，不加（），会得到事件对象 -->
+        <!-- <input type="text" name="content" id="content" @input="handleInput"/> -->
+        <input type="text"  v-model="myText"/>
+        <button @click="addList()">添加</button>
+        <div v-if="dataList.length === 0">空空如也</div>
+        <ul id="list" v-else>
+            <li v-for="(item,index) in dataList" >
+                {{index+1}}-{{item}} 
+                <button @click="deleteList(index)">delete</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                dataList:[],
+                myText: ''
+            },
+            methods:{
+                addList(){
+                    console.log(this.myText)
+                   this.dataList.push(this.myText)
+                   this.myText = ''
+                },
+                deleteList(index){
+                    this.dataList.splice(index,1)
+                },
+                handleInput(event){
+                    console.log(event.target.value)
+                    this.myText = event.target.value
+                }
+            }
+        })
+    </script>
+</body>
+</html>

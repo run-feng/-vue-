@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mixins</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        //mixin 公共方法引入
+        const obj = {
+            methods:{
+                handleClick(){
+                    console.log("click")
+                },
+                handleClick1(){
+                    console.log("click1")
+                }
+            },
+            computed:{
+                total(){
+                    return '123456'
+                }
+            }
+        }
+        new Vue({
+            el:'#box',
+            data: {
+            },
+            methods:{
+                handeleClick(){
+                    console.log("click")
+                }
+            },
+            minxins:[obj], //混入obj对象
+        })
+    </script>
+</body>
+</html>

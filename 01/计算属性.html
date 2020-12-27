@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 模版过重，难以维护 -->
+       {{myname.substr(0,1).toUpperCase()+myname.substr(1)}}
+       <!-- 计算属性 -->
+       {{ mycomputedname }}
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+              myname:"feng"
+            },
+            computed:{
+                mycomputedname(){
+                    return this.myname.substr(0,1).toUpperCase()+this.myname.substr(1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

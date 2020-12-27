@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 不执行html标签解析 -->
+        {{myhtml}}
+        <!-- 解析v-html 不安全-->
+        <div v-html="myhtml"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                myhtml:'<b>1231</b>'
+            }
+        })
+    </script>
+</body>
+</html>

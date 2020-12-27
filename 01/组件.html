@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zujian</title>
+    <script src="./vue.js"></script>
+    <style>
+        span{
+            background-color: #ff12ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <navbar></navbar>
+        <navbar></navbar>
+        <navbar></navbar>
+    </div>
+    <script>
+        Vue.component("navbar",{
+            template:` <div>
+            <button>back</button>
+            <span>导航栏</span>
+            <button>main</button>
+        </div>`,
+        methods:{},
+        computed:{},
+        watch:{}
+        })
+        new Vue({
+            el:'#box'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击颜色切换</title>
+    <script src="./vue.js"></script>
+    <style>
+        .a{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="(item,index) in dataList" @click="handleClick(index)" :class="current == index? 'a' : '' ">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                dataList:["首页",'说说','我的'],
+                current:-1
+            },
+            methods:{
+                handleClick(index){
+                    // console.log(typeof index)
+                    this.current = index
+                }
+            }
+        })
+    </script>
+</body>
+</html>

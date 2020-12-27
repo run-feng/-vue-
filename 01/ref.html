@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mixins</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <div ref="mydiv">123456</div>
+        <input type="text" ref="mytext"/>
+        <child ref="mychild"></child>
+        <button @click="handleClick">click</button>
+    </div>
+    <script>
+        Vue.component("child",{
+            template: `<div>{{myname}}</div>`,
+            data(){
+                return{
+                    myname:'feng'
+                }
+            }
+        })
+        new Vue({
+            el:'#box',
+            methods:{
+                handleClick(){
+                    console.log(this.$refs)
+                    this.$refs.mychild.myname = "runfeng"
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mixins</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child @myevent="myMethod"></child>
+        <child2 v-show="isShow"></child2>
+    </div>
+    <script>
+        Vue.component('child2',{
+            template:`<div>
+            <ul>
+                <li>123</li>
+                <li>123</li>
+                <li>123</li>
+            </ul>
+        </div>`
+        })
+    
+        Vue.component("child",{
+            template:`<button @click="handleClick">click</button>`,
+            methods:{
+                handleClick(){
+                    //分发
+                    this.$emit('myevent')
+                }
+            }
+        })
+        new Vue({
+            el:'#box',
+            data:{
+                isShow:false
+            },
+            methods:{
+                myMethod(){
+                    this.isShow = !this.isShow
+                }
+            }
+        })
+    </script>
+</body>
+</html>

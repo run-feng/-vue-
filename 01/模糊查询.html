@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="myText">
+        <ul>
+            <li v-for="(item,index) in myMethod()" >{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                list: ['aaa','bbb','ccc','ddd','add','cee','eee'],
+                myText: ''
+                
+            },
+            methods: {
+                myMethod(){
+                    return this.list.filter(item => item.includes(this.myText))
+                }
+            }
+        })
+    </script>
+</body>
+</html>

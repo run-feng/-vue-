@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        {{count}}
+        <button @click="handleAdd1">函数名-传事件对象</button>
+        <button @click="handleAdd2($event,2)">函数表达式-传事件对象和手动输入的参数</button>
+        <button @click="count++">直接写代码</button>
+        <!-- 阻止冒泡.stop -->
+        <ul @click="handleUlClick">
+            <li @click.stop="handleLiclick">1231</li>
+        </ul>
+        <!-- 阻止默认行为.prevent -->
+        <a href="http://www.baidu.com" @click.prevent>132</a>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                count: 1
+            },
+            methods: {
+                handleAdd1(event){
+                    this.count++
+                },
+                handleAdd2(event,data){
+                    this.count += data
+                },
+                handleUlClick(evt){
+                   
+                    console.log("handleUlClick")
+                },
+                handleLiclick(evt){
+                    // evt.stopPropagation()
+                    console.log('handleLiclick')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

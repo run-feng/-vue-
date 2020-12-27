@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <script src="./vue.js"></script>
+    <style>
+        li {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div v-if="list.length === 0">空空如也~</div>
+        <ul v-else>
+            <input type="checkbox" v-model="checkbox" @change="checkAll" >全选/全不选
+            <li v-for="(item,index) in list" :key="item.id">
+                <input type="checkbox" v-model="checkboxArr" :value="item" @change="check"/>
+                <img :src="item.pic" />
+                <div>
+                    <div>名称：{{item.name}}</div>
+                    <div>价格￥：{{item.price}}</div>
+                </div>
+                <div>
+                    <button @click="item.number--" :disabled="item.number===0">-</button>
+                    {{item.number}}
+                    <button @click="item.number++" :disabled="item.number===item.limit">+</button>
+                </div>
+                <div>
+                    <button @click="handleClick(index,item.id)">删除</button>
+                </div>
+            </li>
+            <div>总金额：{{sum()}}</div>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                list:[{
+                    name: '商品1',
+                    price: 10,
+                    number: 1,
+                    id: 1,
+                    limit: 5,
+                    pic:"./01.jpg" 
+                },
+                {
+                    name: '商品2',
+                    price: 20,
+                    number: 2,
+                    id: 2,
+                    limit: 10,
+                    pic:"./01.jpg" 
+                },
+                {
+                    name: '商品3',
+                    price: 30,
+                    number: 3,
+                    id: 3,
+                    limit: 15,
+                    pic:"./01.jpg" 
+                }
+                ],
+                checkboxArr:[],
+                checkbox:false
+            },
+            methods: {
+                sum(){
+                    var amount = 0
+                    this.checkboxArr.forEach(item => {
+                        amount += item.price * item.number
+                    });
+                    return amount
+                },
+                handleClick(index,deleteId){
+                    this.checkboxArr = this.checkboxArr.filter(item => item.id != deleteId)
+                    this.list.splice(index,1)
+                    this.check()
+                },
+                checkAll(evt){
+                    if(evt.target.checked){
+                        this.checkboxArr = this.list
+                    }else{
+                        this.checkboxArr = []
+                    }
+                },
+                check(){
+                    console.log(this.checkboxArr.length + '   ' +this.list.length);
+                    if(this.checkboxArr.length===this.list.length){
+                        this.checkbox = true
+                    }else{
+                        this.checkbox = false
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

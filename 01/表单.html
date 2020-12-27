@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box" >
+        <input type="radio" name="gender" value="女" v-model="bool" @change="handleChange"> 女<br>
+        <input type="radio" name="gender" value="男"  v-model="bool"  @change="handleChange"> 女<br>
+        <input type="radio" name="gender" value="人妖"  v-model="bool"  @change="handleChange"> 女<br>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                bool: ""
+            },
+            methods:{
+                handleChange(){
+                    console.log(this.bool)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

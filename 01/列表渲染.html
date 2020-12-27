@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="(item,index) in list">
+              {{item}}
+            </li>
+
+            <li v-for="(value,key) in obj">
+              {{key}}:{{value}}
+            </li>
+            
+            <li v-for="n in 10">
+              {{n}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                list:['1111','2222','3333'],
+                obj: {
+                    name: 'feng',
+                    age: 22,
+                    gender: 'men'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- vue模板语法-->
+        {{myname}}
+        <!-- 绑定事件指令 v-on与@ -->
+        <button @click='handleClick()'>点击</button> 
+        <!-- <button v-on:click='handleClick()'>点击</button>  -->
+        <div v-show="isShow">动态显示和隐藏</div>
+        <div v-if="isCreated">动态创建删除</div>
+        <!-- 动态绑定class,style,src,alt指令 v-bind与： -->
+        <div v-bind:class="isActive? 'red':'yellow'">动态显示背景颜色</div>
+        <!-- 简写：<div :class="isActive? 'red':'yellow'">动态显示背景颜色</div> -->
+
+        <!-- 遍历数组v-for -->
+        <ul>
+            <li v-for="(item,index) in dataList">{{item}}--{{index}}</li>
+        </ul>
+    </div>
+    <div id="box2"></div>
+    <script>
+        new Vue({
+            el:"#box",//element
+            data:{
+                myname:'feng',//状态
+                isShow:true,
+                isCreated:true,
+                isActive:true,
+                dataList:['1','2','3','4']
+            },
+            methods: {
+                handleClick(){
+                    this.myname = 'runfeng',
+                    this.isShow = !this.isShow
+                    this.isCreated = !this.isCreated,
+                    this.isActive = !this.isActive
+                }
+            }
+        })
+        var box2 = document.getElementById('box2')
+        var obj = {}
+        Object.defineProperty(obj,"myname",{
+            set(value){
+                console.log('有人修改了')
+                box2.innerHTML = value
+            },
+            get(){
+                console.log('有人访问了')
+            }
+        })
+    </script>
+</body>
+</html>

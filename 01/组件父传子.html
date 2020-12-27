@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zujian</title>
+    <script src="./vue.js"></script>
+    <style>
+        span{
+            background-color: #ff12ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <navbar mytitle="首页" :myshow="false"></navbar>
+        <navbar mytitle="列表"></navbar>
+        <navbar mytitle="购物车"></navbar>
+    </div>
+    <script>
+        Vue.component("navbar",{
+            template:` <div>
+            <button v-show="myshow">back</button>
+            <span>导航栏--{{mytitle}}</span>
+            <button  v-show="myshow">main</button>
+        </div>`,
+        // props:['mytitle'],//父组件传来的属性，在这里接收
+        // props:{
+        //     mytitle:String
+        // } 属性验证
+        props:{
+            mytitle:{
+                type:String,
+                default:"默认名字"
+            },
+            myshow:{
+                type:Boolean,
+                default:"true"
+            }
+        }
+        })
+        new Vue({
+            el:'#box'
+        })
+    </script>
+</body>
+</html>

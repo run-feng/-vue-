@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子传父</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child @myevent="myMethod"></child>
+    </div>
+    <script>
+        Vue.component("child",{
+            template:`<div @click="handleClick">123</div>`,
+            data(){
+                return {
+                    money: 123456789
+                }
+            },
+            methods:{
+                handleClick(){
+                    //分发
+                    this.$emit('myevent',this.money)
+                }
+            }
+        })
+        new Vue({
+            el:'#box',
+            methods:{
+                myMethod(data){
+                    console.log(data)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
